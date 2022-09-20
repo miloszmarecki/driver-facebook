@@ -76,7 +76,7 @@ class FacebookDriver extends HttpDriver implements VerifiesService
     /** @var DriverEventInterface */
     protected $driverEvent;
 
-    protected $facebookProfileEndpoint = 'https://graph.facebook.com/v15.0/';
+    protected $facebookProfileEndpoint = 'https://graph.facebook.com/v3.0/';
 
     /** @var bool If the incoming request is a FB postback */
     protected $isPostback = false;
