@@ -106,7 +106,7 @@ class FacebookDriver extends HttpDriver implements VerifiesService
     {
         $validSignature = empty($this->config->get('app_secret')) || $this->validateSignature();
         $messages = Collection::make($this->event->get('messaging'))->filter(function ($msg) {
-            return (isset($msg['message']['text']) || isset($msg['postback']['payload']) || isset($msg['optin']['type'])) && !isset($msg['message']['is_echo']);
+            return (isset($msg['message']['text']) || isset($msg['postback']['payload'])) && !isset($msg['message']['is_echo']);
         });
 
         return !$messages->isEmpty() && $validSignature;
@@ -295,14 +295,6 @@ class FacebookDriver extends HttpDriver implements VerifiesService
                 $this->isPostback = true;
 
                 $message->setText($msg['message']['quick_reply']['payload']);
-            } elseif (isset($msg['optin']['type']) && $msg['optin']['type'] === 'one_time_notif_req') {
-                $this->isPostback = true;
-
-                $payload = json_decode($msg['optin']['payload']);
-
-                $message->setText($payload['action']);
-                $message->addExtras('notif_token', $msg['optin']['one_time_notif_token']);
-                $message->addExtras('code', $payload['code']);
             }
 
             return $message;
