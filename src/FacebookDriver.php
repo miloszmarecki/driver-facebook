@@ -27,6 +27,7 @@ use BotMan\Drivers\Facebook\Extensions\ButtonTemplate;
 use BotMan\Drivers\Facebook\Extensions\GenericTemplate;
 use BotMan\Drivers\Facebook\Extensions\ListTemplate;
 use BotMan\Drivers\Facebook\Extensions\MediaTemplate;
+use BotMan\Drivers\Facebook\Extensions\OneTimeNotificationTemplate;
 use BotMan\Drivers\Facebook\Extensions\OpenGraphTemplate;
 use BotMan\Drivers\Facebook\Extensions\ReceiptTemplate;
 use BotMan\Drivers\Facebook\Extensions\User;
@@ -64,6 +65,7 @@ class FacebookDriver extends HttpDriver implements VerifiesService
         ReceiptTemplate::class,
         MediaTemplate::class,
         OpenGraphTemplate::class,
+        OneTimeNotificationTemplate::class,
     ];
 
     private $supportedAttachments = [
