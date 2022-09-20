@@ -106,7 +106,7 @@ class FacebookDriver extends HttpDriver implements VerifiesService
     {
         $validSignature = empty($this->config->get('app_secret')) || $this->validateSignature();
         $messages = Collection::make($this->event->get('messaging'))->filter(function ($msg) {
-            return (isset($msg['message']['text']) || isset($msg['postback']['payload'])) && !isset($msg['message']['is_echo']);
+            return (isset($msg['message']['text']) || isset($msg['postback']['payload']) || isset($msg['optin']['type'])) && !isset($msg['message']['is_echo']);
         });
 
         return !$messages->isEmpty() && $validSignature;
