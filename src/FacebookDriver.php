@@ -296,8 +296,11 @@ class FacebookDriver extends HttpDriver implements VerifiesService
             } elseif (isset($msg['optin']['type']) && $msg['optin']['type'] === 'one_time_notif_req') {
                 $this->isPostback = true;
 
-                $message->setText($msg['optin']['payload']['action']);
+                $payload = json_decode($msg['optin']['payload']);
+
+                $message->setText($payload['action']);
                 $message->addExtras('notif_token', $msg['optin']['one_time_notif_token']);
+                $message->addExtras('code', $payload['code']);
             }
 
             return $message;
