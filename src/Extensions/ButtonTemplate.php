@@ -28,7 +28,7 @@ class ButtonTemplate implements JsonSerializable, WebAccess
     }
 
     /**
-     * @param  ElementButton  $button
+     * @param ElementButton $button
      * @return $this
      */
     public function addButton(ElementButton $button)
@@ -39,7 +39,7 @@ class ButtonTemplate implements JsonSerializable, WebAccess
     }
 
     /**
-     * @param  array  $buttons
+     * @param array $buttons
      * @return $this
      */
     public function addButtons(array $buttons)
@@ -56,7 +56,7 @@ class ButtonTemplate implements JsonSerializable, WebAccess
     /**
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'attachment' => [
@@ -73,7 +73,7 @@ class ButtonTemplate implements JsonSerializable, WebAccess
     /**
      * @return array
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return $this->toArray();
     }
